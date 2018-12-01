@@ -2,18 +2,22 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 
 	private List<Vector3> _points;
 
-	[SerializeField] public bool IsMove;// { get; private set; }
-	[SerializeField] public bool IsHitPlayer;
+	private SpriteRenderer _image;
+	[SerializeField] private Sprite _afterPlayerHit;
+	[SerializeField] private Sprite _beforePlayerHit;
 
-	private BoxCollider2D _collider;
+	[SerializeField] public bool IsMove;// { get; private set; }
+
 	protected void Start() {
 		IsMove = false;
-		_collider = GetComponent<BoxCollider2D>();
+		_image = GetComponent<SpriteRenderer>();
+		_image.sprite = _afterPlayerHit;
 		Init();
 	}
 
@@ -38,6 +42,7 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void Run(float duration) {
+		_image.sprite = _afterPlayerHit;
 		IsMove = true;
 		transform.DOPath(_points.ToArray(), duration, PathType.CatmullRom).onComplete = () => {
 			IsMove = false;
@@ -45,6 +50,10 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log("!");
+		if (other.gameObject.name != "Engine") {
+			return;
+		}
+		EventManager.HitPlayer();
+		_image.sprite = _beforePlayerHit;
 	}
 }

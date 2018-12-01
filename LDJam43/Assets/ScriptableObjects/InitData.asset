@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FuelInUsage: 100
   MaxFuelInUsage: 100
-  FuelInStorage: 350
-  MaxFuelInStorage: 300
+  FuelInStorage: 300
+  MaxFuelInStorage: 350
   Lives: 5
   TimePerTick: 1
   FuelDecrement: 1

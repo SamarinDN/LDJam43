@@ -15,14 +15,20 @@ public class GameParameters : Singleton<GameParameters> {
 
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
+		EventManager.OnHit += StoleSoul;
 	}
 
 	void OnDisable() {
 		EventManager.OnLose -= StopGameProcess;
+		EventManager.OnHit -= StoleSoul;
 	}
 
 	void StopGameProcess() {
 		StopCoroutine(_gameCoroutine);
+	}
+
+	void StoleSoul() {
+		FuelInStorage -= 10;
 	}
 
 	public void InitGameParameters() {
