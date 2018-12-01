@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3eebbeba1714e63b2062cc46d1c05a6, type: 3}
   m_Name: FlyUnitGeneratorData
   m_EditorClassIdentifier: 
-  SpawnRate: 10
+  SpawnRate: 5
   SpawnDelta: 5
   SpawnScale: 0.9
-  Speed: 9
+  Speed: 10
   SpeedDelta: 4
   SpeedScale: 0.9

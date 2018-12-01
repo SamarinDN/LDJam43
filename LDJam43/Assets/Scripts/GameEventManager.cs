@@ -29,6 +29,12 @@ public class GameEventManager : MonoBehaviour {
 
 	private Stages _stage = Stages.Loop;// Stages.Tutorial_Life;
 
+	private void Start() {
+		foreach (var g in _uintGenerators) {
+			g.Init();
+		}
+	}
+
 	private void Update() {
 		if (_stage == Stages.Loop) {
 			foreach (var g in _uintGenerators) {
@@ -88,18 +94,36 @@ public class GameEventManager : MonoBehaviour {
 		[SerializeField] private UnitsGenerator _unitGenerator;
 		[SerializeField] private UnitsGeneratorSettingData _settingData;
 		
+		private float _spawnRate;
+		private float _spawnDelta;
+		private float _spawnScale;
+		
+		private float _speed;
+		private float _speedDelta;
+		private float _speedScale;
+		
 		private float _timer = 0;
 
+		public void Init() {
+			_spawnRate = _settingData.SpawnRate;
+			_spawnDelta = _settingData.SpawnDelta;
+			_spawnScale = _settingData.SpawnScale;
+			_speed = _settingData.Speed;
+			_speedDelta = _settingData.SpeedDelta;
+			_speedScale = _settingData.SpeedScale;
+			_timer = Random.Range(0, _spawnRate + _spawnDelta);
+		}
+
 		public void SpawnUnit() {
-			_unitGenerator.LaunchUnit(Random.Range(_settingData.Speed, _settingData.Speed + _settingData.SpeedDelta));
+			_unitGenerator.LaunchUnit(Random.Range(_speed, _speed + _speedDelta));
 		}
 
 		public void ChangeSpawnRate() {
-			_settingData.SpawnRate *= _settingData.SpawnScale;
+			_spawnRate *= _spawnScale;
 		}
 		
 		public void ChangeSpeed() {
-			_settingData.Speed *= _settingData.SpeedScale;
+			_speed *= _speedScale;
 		}
 		
 		public void TrySpawnUnit() {
@@ -110,7 +134,7 @@ public class GameEventManager : MonoBehaviour {
 			if (!(_timer <= 0.0f)) {
 				return;
 			}
-			_timer = Random.Range(_settingData.SpawnRate, _settingData.SpawnRate + _settingData.SpawnDelta);
+			_timer = Random.Range(_spawnRate, _spawnRate + _spawnDelta);
 			SpawnUnit();
 		}
 	}
