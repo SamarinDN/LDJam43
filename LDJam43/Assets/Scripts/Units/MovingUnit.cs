@@ -22,7 +22,6 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
-		Debug.Log("Kill Bird");
 		FuelManager.Instance.SpawnFeed(transform.position);
 		transform.DOComplete();
 		IsMove = false;

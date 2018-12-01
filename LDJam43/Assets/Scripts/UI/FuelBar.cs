@@ -8,6 +8,8 @@ namespace UI {
 		public InitData DataToInitialize;
 		[SerializeField] private Image _fuelBar;
 		[SerializeField] private Image _usageFuelBar;
+		
+		[SerializeField] private Image _monsterMarker;
 
 		private Vector2 _fuelBarSize;
 		private Vector2 _usageFuelBarSize;
@@ -20,6 +22,8 @@ namespace UI {
 			_usageFuelBarSize = _usageFuelBar.rectTransform.sizeDelta;
 			_maxFuelInStorage = DataToInitialize.MaxFuelInStorage;
 			_maxFuelInUsage = DataToInitialize.MaxFuelInUsage;
+			EventManager.OnMonsterAwake += EnableMonsterMarker;
+			EventManager.OnMonsterSleep += DisableMonsterMarker;
 		}
 
 		public void Update() {
@@ -27,6 +31,14 @@ namespace UI {
 			_fuelBar.rectTransform.sizeDelta = new Vector2(_fuelBarSize.x, _fuelBarSize.y * fuelScale);
 			var usageFuelScale = Mathf.Clamp(GameParameters.Instance.FuelInUsage / _maxFuelInUsage, 0, 1);
 			_usageFuelBar.rectTransform.sizeDelta = new Vector2(_usageFuelBarSize.x, _usageFuelBarSize.y * usageFuelScale);
+		}
+
+		public void EnableMonsterMarker() {
+			_monsterMarker.gameObject.SetActive(true);
+		}
+		
+		public void DisableMonsterMarker() {
+			_monsterMarker.gameObject.SetActive(false);
 		}
 	}
 }

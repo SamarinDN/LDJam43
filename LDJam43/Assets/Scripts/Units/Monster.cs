@@ -35,16 +35,22 @@ namespace Units {
 					return;
 				}
 				monsterAwake = false;
-				EatPlayer();
+				if (GameParameters.Instance.FuelInUsage > GameParameters.Instance.MinFuelToGetHit) {
+					GoSleep();
+				} else {
+					EatPlayer();
+				}
 			}
 		}
 
 		public void MonsterAwake() {
 			transform.DOMove(_startPoint.transform.position, _startDuration);
+			EventManager.MonsterAwake();
 		}
 
 		public void GoSleep() {
 			transform.DOMove(_sleepPoint.transform.position, _sleepDuration);
+			EventManager.MonsterSleep();
 		}
 
 		public void EatPlayer() {

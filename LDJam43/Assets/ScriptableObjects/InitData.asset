@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: InitData
   m_EditorClassIdentifier: 
   FuelInUsage: 100
+  MinFuelToGetHit: 50
   MaxFuelInUsage: 100
   FuelInStorage: 300
   MaxFuelInStorage: 350

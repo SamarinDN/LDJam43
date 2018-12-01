@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InitData : ScriptableObject {
 	public float FuelInUsage;
+	public float MinFuelToGetHit;
 	public float MaxFuelInUsage;
 
 	public float FuelInStorage;

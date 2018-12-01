@@ -8,6 +8,7 @@ public class GameParameters : Singleton<GameParameters> {
 	public float    FuelInStorage;
 	public float    MaxFuelInStorage;
 	public int Lives;
+	public float    MinFuelToGetHit;
 	float           MaxFuelInUsage;
 	float      _timePerTick;
 	Coroutine  _gameCoroutine;
@@ -36,6 +37,7 @@ public class GameParameters : Singleton<GameParameters> {
 		FuelInStorage = DataToInitialize.FuelInStorage;
 		Lives = DataToInitialize.Lives;
 		_timePerTick = DataToInitialize.TimePerTick;
+		MinFuelToGetHit = DataToInitialize.MinFuelToGetHit;
 		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
 		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
 		_fuelDecrement = DataToInitialize.FuelDecrement;
