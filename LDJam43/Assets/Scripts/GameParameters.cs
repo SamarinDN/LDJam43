@@ -28,7 +28,7 @@ public class GameParameters : Singleton<GameParameters> {
 	}
 
 	public float Speed {
-		get { return FuelInUsage; }
+		get { return FuelInUsage > 0 ? FuelInUsage : 0; }
 	}
 
 	void Awake() {
@@ -41,9 +41,9 @@ public class GameParameters : Singleton<GameParameters> {
 
 	IEnumerator Tick() {
 		TickAction();
-		if ( FuelInStorage <= 0 ) {
-			FuelInStorage = 0;
-			yield return new WaitWhile(() => FuelInStorage <= 0);
+		if ( FuelInUsage < 0 ) {
+			FuelInUsage = 0;
+			yield return new WaitWhile(() => FuelInUsage < 0);
 		}
 
 		yield return new WaitForSeconds(TimePerTick);
