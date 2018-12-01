@@ -6,35 +6,36 @@ using UnityEngine.EventSystems;
 
 public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 
-	[SerializeField] protected List<PathPoint> Points;
+	private List<Vector3> _points;
 
-	private int _pointIndex = 0;
-	
-	private void Start() {
-		DOTween.Init();
-		Move();
+	public bool IsMove { get; private set; }
+
+	protected void Start() {
+		IsMove = false;
+		Init();
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
 		Debug.Log("Kill Bird");
 	}
 
-	private void Move() {
-		if (_pointIndex < Points.Count) {
-			var point = Points[_pointIndex].Point.transform.position;
-			var time = Points[_pointIndex].Time;
-			MoveToPoint(point, time).onComplete = Move;
-			_pointIndex++;
-		}
+	public void ClearPoint() {
+		_points.Clear();
 	}
 
-	private Tween MoveToPoint(Vector3 point, float time) {
-		return transform.DOMove(point, time);
+	public void AddPoint(Vector3 point) {
+		_points.Add(point);
 	}
 
-	[Serializable]
-	public class PathPoint {
-		[SerializeField] public GameObject Point;
-		[SerializeField] public float Time;
+	protected void Init() {
+		DOTween.Init();
+		_points = new List<Vector3>();
+	}
+
+	public void Run(float duration) {
+		IsMove = true;
+		transform.DOPath(_points.ToArray(), duration, PathType.CatmullRom).onComplete = () => {
+			IsMove = false;
+		};
 	}
 }
