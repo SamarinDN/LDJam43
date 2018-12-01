@@ -17,7 +17,7 @@ namespace Units {
 			_units = new List<MovingUnit>(units);
 		}
 
-		public void LaunchUnit() {
+		public void LaunchUnit(float duration) {
 			var unit = GetUnit();
 			if (!unit) {
 				return;
@@ -35,7 +35,7 @@ namespace Units {
 			unit.AddPoint(right + _pointTarget.transform.position);
 			unit.AddPoint(_pointTarget.transform.position);
 			unit.AddPoint(_pointEnd.transform.position);
-			unit.Run(Random.Range(9.0f, 14.0f));
+			unit.Run(duration);
 		}
 
 		private MovingUnit GetUnit() {
