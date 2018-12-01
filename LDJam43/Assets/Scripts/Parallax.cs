@@ -2,17 +2,14 @@
 
 public class Parallax : MonoBehaviour {
 
-	[SerializeField] private Transform _image;
 	private float _pos = 0;
 	public float Delta = 0;
-	public float Speed = 0;
 
-	void FixedUpdate() {
-		// TODO
-		_pos += Speed;
+	void Update() {
+		_pos += GameParameters.Instance.Speed * 0.001f;
 		if (_pos > Delta) {
 			_pos -= Delta;
 		}
-		_image.position = new Vector3(-_pos, _image.position.y);
+		transform.position = new Vector3(-_pos, transform.position.y);
 	}
 }
