@@ -8,7 +8,7 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 
 	private List<Vector3> _points;
 
-	public bool IsMove { get; private set; }
+	[SerializeField] public bool IsMove;// { get; private set; }
 
 	protected void Start() {
 		IsMove = false;

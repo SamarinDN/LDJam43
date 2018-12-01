@@ -8,18 +8,13 @@ using Random = UnityEngine.Random;
 
 public class GameEventManager : MonoBehaviour {
 
-	[SerializeField] private UnitsGeneratorSetting _fishGenerators;
-	[SerializeField] private UnitsGeneratorSetting _shellGenerators;
-	[SerializeField] private UnitsGeneratorSetting _birdGenerators;
+	[SerializeField] private List<UnitsGeneratorSetting> _uintGenerators;
 	// TODO FuelGeneratorSetting;
 	// TODO MonsterGeneratorSetting;
 
 	[SerializeField] private float _loopTime;
 	
 	private float _monsterTimer = 0;
-	private float _fishTimer = 0;
-	private float _shellTimer = 0;
-	private float _birdTimer = 0;
 
 	public enum Stages {
 		Tutorial_Life,
@@ -33,12 +28,12 @@ public class GameEventManager : MonoBehaviour {
 
 	private Stages _stage = Stages.Loop;// Stages.Tutorial_Life;
 
-	public void Update() {
+	private void Update() {
 		if (_stage == Stages.Loop) {
+			foreach (var g in _uintGenerators) {
+				g.TrySpawnUnit();
+			}
 			TrySpawnMonster();
-			TrySpawnFish();
-			TrySpawnShell();
-			TrySpawnBird();
 		}
 	}
 
@@ -46,16 +41,28 @@ public class GameEventManager : MonoBehaviour {
 		// TODO
 	}
 
-	protected void TutorialA() {
+	protected void TutorialLife() {
+		// TODO
 	}
 	
-	protected void TutorialB() {
+	protected void TutorialSpeed() {
+		// TODO
 	}
 	
-	protected void TutorialC() {
+	protected void TutorialFuel() {
+		// TODO
 	}
 	
-	protected void TutorialD() {
+	protected void TutorialShell() {
+		// TODO
+	}
+	
+	protected void TutorialFish() {
+		// TODO
+	}
+	
+	protected void TutorialBird() {
+		// TODO
 	}
 
 	private void TrySpawnMonster() {
@@ -65,43 +72,14 @@ public class GameEventManager : MonoBehaviour {
 		}
 		_monsterTimer = _loopTime;
 		// TODO Spawn Monster
-	}
-	
-	private void TrySpawnFish() {
-		_fishTimer -= Time.deltaTime;
-		if (!(_fishTimer <= 0.0f)) {
-			return;
-		}
-		_fishTimer = _fishGenerators.GetSpawnRate();
-		_fishGenerators.SpawnUnit();
-	}
-	
-	private void TrySpawnShell() {
-		_shellTimer -= Time.deltaTime;
-		if (!(_shellTimer <= 0.0f)) {
-			return;
-		}
-		_shellTimer = _shellGenerators.GetSpawnRate();
-		_shellGenerators.SpawnUnit();
-	}
-
-	private void TrySpawnBird() {
-		_birdTimer -= Time.deltaTime;
-		if (!(_birdTimer <= 0.0f)) {
-			return;
-		}
-		_birdTimer = _birdGenerators.GetSpawnRate();
-		_birdGenerators.SpawnUnit();
+		NextLoop();
 	}
 
 	private void NextLoop() {
-		_fishGenerators.ChangeSpawnRate();
-		_shellGenerators.ChangeSpawnRate();
-		_birdGenerators.ChangeSpawnRate();
-
-		_fishGenerators.ChangeSpeed();
-		_shellGenerators.ChangeSpeed();
-		_birdGenerators.ChangeSpeed();
+		foreach (var g in _uintGenerators) {
+			g.ChangeSpawnRate();
+			g.ChangeSpeed();
+		}
 	}
 
 	[Serializable]
@@ -114,6 +92,8 @@ public class GameEventManager : MonoBehaviour {
 		[SerializeField] private float _speed;
 		[SerializeField] private float _speedDelta;
 		[SerializeField] private float _speedScale;
+		
+		private float _timer = 0;
 
 		public void SpawnUnit() {
 			_unitGenerator.LaunchUnit(Random.Range(_speed, _speed + _speedDelta));
@@ -126,9 +106,17 @@ public class GameEventManager : MonoBehaviour {
 		public void ChangeSpeed() {
 			_speed *= _speedScale;
 		}
-
-		public float GetSpawnRate() {
-			return Random.Range(_spawnRate, _spawnRate + _spawnDelta);
+		
+		public void TrySpawnUnit() {
+			if (_unitGenerator == null) {
+				return;
+			}
+			_timer -= Time.deltaTime;
+			if (!(_timer <= 0.0f)) {
+				return;
+			}
+			_timer = Random.Range(_spawnRate, _spawnRate + _spawnDelta);
+			SpawnUnit();
 		}
 	}
 }
