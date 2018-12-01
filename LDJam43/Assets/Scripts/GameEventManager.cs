@@ -9,8 +9,9 @@ using Random = UnityEngine.Random;
 public class GameEventManager : MonoBehaviour {
 
 	[SerializeField] private List<UnitsGeneratorSetting> _uintGenerators;
+	[SerializeField] private Monster _monster;
+
 	// TODO FuelGeneratorSetting;
-	// TODO MonsterGeneratorSetting;
 
 	[SerializeField] private float _loopTime;
 	
@@ -71,7 +72,7 @@ public class GameEventManager : MonoBehaviour {
 			return;
 		}
 		_monsterTimer = _loopTime;
-		// TODO Spawn Monster
+		_monster.Spawn();
 		NextLoop();
 	}
 
