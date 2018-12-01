@@ -6,34 +6,35 @@ using UnityEngine;
 public class GameParameters : Singleton<GameParameters> {
 	public InitData DataToInitialize;
 	public float    FuelInUsage;
-	float           MaxFuelInUsage;
+	
 	public float    FuelInStorage;
 	public float    MaxFuelInStorage;
-
 	public int Lives;
-	float      TimePerTick;
-
-	Coroutine GameCoroutine;
-
-	float fuelDecrement = 1;
+	float           MaxFuelInUsage;
+	float      _timePerTick;
+	Coroutine  _gameCoroutine;
+	float      _fuelDecrement = 1;
 
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
 	}
 
+	void OnDisable() {
+		EventManager.OnLose -= StopGameProcess;
+	}
+
 	void StopGameProcess() {
-		StopCoroutine(GameCoroutine);
+		StopCoroutine(_gameCoroutine);
 	}
 
 	public void InitGameParameters() {
 		FuelInUsage = DataToInitialize.FuelInUsage;
 		FuelInStorage = DataToInitialize.FuelInStorage;
 		Lives = DataToInitialize.Lives;
-		TimePerTick = DataToInitialize.TimePerTick;
+		_timePerTick = DataToInitialize.TimePerTick;
 		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
 		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
-		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
-		fuelDecrement = DataToInitialize.fuelDecrement;
+		_fuelDecrement = DataToInitialize.fuelDecrement;
 	}
 
 	public float Speed {
@@ -55,12 +56,12 @@ public class GameParameters : Singleton<GameParameters> {
 			yield return new WaitWhile(() => FuelInUsage < 0);
 		}
 
-		yield return new WaitForSeconds(TimePerTick);
-		GameCoroutine = StartCoroutine(Tick());
+		yield return new WaitForSeconds(_timePerTick);
+		_gameCoroutine = StartCoroutine(Tick());
 	}
 
 	void TickAction() {
-		FuelInUsage -= fuelDecrement;
+		FuelInUsage -= _fuelDecrement;
 	}
 
 	public void DealDamage(int amount) {
