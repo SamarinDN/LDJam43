@@ -28,7 +28,7 @@ public class GameParameters : Singleton<GameParameters> {
 	}
 
 	public float Speed {
-		get { return FuelInStorage; }
+		get { return FuelInUsage; }
 	}
 
 	void Awake() {
@@ -58,9 +58,13 @@ public class GameParameters : Singleton<GameParameters> {
 		Lives -= lives;
 	}
 
+	public void AddFuel(float amount) {
+		FuelInStorage = Mathf.Min(FuelInStorage + amount, MaxFuelInStorage);
+	}
+
 	public void Feed(float amount) {
 		amount = amount < FuelInStorage ? amount : FuelInStorage;
 		FuelInStorage -= amount;
-		FuelInUsage = Mathf.Min(amount + FuelInUsage, MaxFuel);
+		FuelInUsage = Mathf.Min(amount + FuelInUsage, MaxFuelInUsage);
 	}
 }
