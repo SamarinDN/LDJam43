@@ -4,14 +4,35 @@ using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
 
 public class GameParameters : Singleton<GameParameters> {
-	public float FuelInUsage = 70;
-	public float FuelInStorage=300;
-	public int   Lives       = 5;
-	public float TimePerTick = 1;
-	public float MaxFuel=100;
+	public InitData DataToInitialize;
+	public float    FuelInUsage;
+	float           MaxFuelInUsage;
+	public float    FuelInStorage;
+	public float    MaxFuelInStorage;
+
+	public int Lives;
+	float      TimePerTick;
+
+
+	float fuelDecrement = 1;
+
+	public void InitGameParameters() {
+		FuelInUsage = DataToInitialize.FuelInUsage;
+		FuelInStorage = DataToInitialize.FuelInStorage;
+		Lives = DataToInitialize.Lives;
+		TimePerTick = DataToInitialize.TimePerTick;
+		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
+		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
+		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
+		fuelDecrement = DataToInitialize.fuelDecrement;
+	}
 
 	public float Speed {
 		get { return FuelInStorage; }
+	}
+
+	void Awake() {
+		InitGameParameters();
 	}
 
 	void Start() {
@@ -20,12 +41,17 @@ public class GameParameters : Singleton<GameParameters> {
 
 	IEnumerator Tick() {
 		TickAction();
+		if ( FuelInStorage <= 0 ) {
+			FuelInStorage = 0;
+			yield return new WaitWhile(() => FuelInStorage <= 0);
+		}
+
 		yield return new WaitForSeconds(TimePerTick);
 		StartCoroutine(Tick());
 	}
 
 	void TickAction() {
-		FuelInUsage -= 1;
+		FuelInUsage -= fuelDecrement;
 	}
 
 	public void DealDamage(int lives) {

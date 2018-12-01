@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c321ac8e7a2040a88124f7140aa7131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DataToInitialize: {fileID: 11400000, guid: be55747fa61884d869cca80a9a2ccb98, type: 2}
   FuelInUsage: 70
   FuelInStorage: 700
   Lives: 5
