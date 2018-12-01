@@ -25,7 +25,7 @@ public class EventManager: MonoBehaviour {
 	}
 
 	public static void MonsterAwake() {
-		if (OnMonsterSleep != null) {
+		if (OnMonsterAwake != null) {
 			OnMonsterAwake();
 		}
 	}
