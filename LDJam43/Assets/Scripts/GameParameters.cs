@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class GameParameters : Singleton<GameParameters> {
 	public float FuelInUsage = 70;
-	public float FuelInStorage;
+	public float FuelInStorage=300;
 	public int   Lives       = 5;
 	public float TimePerTick = 1;
+	public float MaxFuel=100;
 
 	public float Speed {
 		get { return FuelInStorage; }
@@ -30,6 +31,10 @@ public class GameParameters : Singleton<GameParameters> {
 	public void DealDamage(int lives) {
 		Lives -= lives;
 	}
-	
-	
+
+	public void Feed(float amount) {
+		amount = amount < FuelInStorage ? amount : FuelInStorage;
+		FuelInStorage -= amount;
+		FuelInUsage = Mathf.Min(amount + FuelInUsage, MaxFuel);
+	}
 }

@@ -4,6 +4,7 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets/Scripts" t="Include">
+        <e p="FeedingScript.cs" t="Include" />
         <e p="GameParameters.cs" t="Include" />
         <e p="Singleton.cs" t="Include" />
       </e>
