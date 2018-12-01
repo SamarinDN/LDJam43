@@ -19,5 +19,6 @@ MonoBehaviour:
   TimePerTick: 1
   FuelDecrement: 1
   FeedingCost: 10
-  BackSpeedMultiplier: 100
+  BackSpeedMultiplier: 300
   DropItemSpeedMultiplier: 0.1
+  DropItemReward: 15
