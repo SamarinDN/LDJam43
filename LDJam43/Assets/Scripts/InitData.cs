@@ -13,6 +13,8 @@ public class InitData : ScriptableObject {
 	public float FeedingCost;
 
 	public float BackSpeedMultiplier;
+	public float IceSpeedMultiplier;
+	public float WaterSpeedMultiplier;
 	public float DropItemSpeedMultiplier;
 
 	public float DropItemReward;

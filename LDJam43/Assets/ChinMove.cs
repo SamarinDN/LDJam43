@@ -12,12 +12,12 @@ public class ChinMove : MonoBehaviour {
 		var q = MidPos.rotation;
 		//transform.DOMoveY(transform.position.y-0.1f, 1).SetLoops(-1,LoopType.Yoyo);
 
-		transform.DOPath(new[] {
-			MidPos.position,
-			FinalPos.position
-		}, Duration).SetLoops(-1, LoopType.Yoyo);
+		transform.DOLocalPath(new[] {
+			-MidPos.position+transform.position,
+			-FinalPos.position+transform.position
+		}, Duration);/*.SetLoops(-1, LoopType.Yoyo);
 		transform.DORotateQuaternion(
 			FinalPos.rotation
-			, Duration).SetLoops(-1, LoopType.Yoyo);
+			, Duration).SetLoops(-1, LoopType.Yoyo);*/
 	}
 }
