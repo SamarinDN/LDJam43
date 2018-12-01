@@ -86,26 +86,20 @@ public class GameEventManager : MonoBehaviour {
 	[Serializable]
 	class UnitsGeneratorSetting {
 		[SerializeField] private UnitsGenerator _unitGenerator;
-		[SerializeField] private float _spawnRate;
-		[SerializeField] private float _spawnDelta;
-		[SerializeField] private float _spawnScale;
-		
-		[SerializeField] private float _speed;
-		[SerializeField] private float _speedDelta;
-		[SerializeField] private float _speedScale;
+		[SerializeField] private UnitsGeneratorSettingData _settingData;
 		
 		private float _timer = 0;
 
 		public void SpawnUnit() {
-			_unitGenerator.LaunchUnit(Random.Range(_speed, _speed + _speedDelta));
+			_unitGenerator.LaunchUnit(Random.Range(_settingData.Speed, _settingData.Speed + _settingData.SpeedDelta));
 		}
 
 		public void ChangeSpawnRate() {
-			_spawnRate *= _spawnScale;
+			_settingData.SpawnRate *= _settingData.SpawnScale;
 		}
 		
 		public void ChangeSpeed() {
-			_speed *= _speedScale;
+			_settingData.Speed *= _settingData.SpeedScale;
 		}
 		
 		public void TrySpawnUnit() {
@@ -116,7 +110,7 @@ public class GameEventManager : MonoBehaviour {
 			if (!(_timer <= 0.0f)) {
 				return;
 			}
-			_timer = Random.Range(_spawnRate, _spawnRate + _spawnDelta);
+			_timer = Random.Range(_settingData.SpawnRate, _settingData.SpawnRate + _settingData.SpawnDelta);
 			SpawnUnit();
 		}
 	}
