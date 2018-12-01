@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Food : DropItem {
+public class Fuel : DropItem {
 	[SerializeField] public bool IsMove;
 
 	private void Start() {
