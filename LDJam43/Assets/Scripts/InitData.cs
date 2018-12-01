@@ -9,7 +9,13 @@ public class InitData : ScriptableObject {
 	public float MaxFuelInStorage;
 	public int   Lives;
 	public float TimePerTick;
-	public float fuelDecrement;
+	public float FuelDecrement;
+	public float FeedingCost;
+
+	public float BackSpeedMultiplier;
+	public float DropItemSpeedMultiplier;
+
+	public float DropItemReward;
 
 	[MenuItem("LDJam43/My Scriptable Object")]
 	public static void CreateMyAsset() {

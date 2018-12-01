@@ -14,8 +14,10 @@ MonoBehaviour:
   FuelInUsage: 70
   MaxFuelInUsage: 100
   FuelInStorage: 350
-  MaxFuelInStorage: 100
+  MaxFuelInStorage: 300
   Lives: 5
   TimePerTick: 1
-  MaxFuel: 0
-  fuelDecrement: 1
+  FuelDecrement: 1
+  FeedingCost: 10
+  BackSpeedMultiplier: 100
+  DropItemSpeedMultiplier: 0.1

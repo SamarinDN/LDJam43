@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
 
 public class GameParameters : Singleton<GameParameters> {
@@ -34,7 +32,7 @@ public class GameParameters : Singleton<GameParameters> {
 		_timePerTick = DataToInitialize.TimePerTick;
 		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
 		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
-		_fuelDecrement = DataToInitialize.fuelDecrement;
+		_fuelDecrement = DataToInitialize.FuelDecrement;
 	}
 
 	public float Speed {
