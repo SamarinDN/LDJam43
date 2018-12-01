@@ -13,8 +13,17 @@ public class GameParameters : Singleton<GameParameters> {
 	public int Lives;
 	float      TimePerTick;
 
+	Coroutine GameCoroutine;
 
 	float fuelDecrement = 1;
+
+	void OnEnable() {
+		EventManager.OnLose += StopGameProcess;
+	}
+
+	void StopGameProcess() {
+		StopCoroutine(GameCoroutine);
+	}
 
 	public void InitGameParameters() {
 		FuelInUsage = DataToInitialize.FuelInUsage;
@@ -47,15 +56,15 @@ public class GameParameters : Singleton<GameParameters> {
 		}
 
 		yield return new WaitForSeconds(TimePerTick);
-		StartCoroutine(Tick());
+		GameCoroutine = StartCoroutine(Tick());
 	}
 
 	void TickAction() {
 		FuelInUsage -= fuelDecrement;
 	}
 
-	public void DealDamage(int lives) {
-		Lives -= lives;
+	public void DealDamage(int amount) {
+		Lives -= amount;
 	}
 
 	public void AddFuel(float amount) {
