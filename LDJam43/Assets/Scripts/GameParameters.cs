@@ -16,12 +16,12 @@ public class GameParameters : Singleton<GameParameters> {
 
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
-		EventManager.OnHit += StoleSoul;
+		EventManager.OnStolenSoul += StoleSoul;
 	}
 
 	void OnDisable() {
 		EventManager.OnLose -= StopGameProcess;
-		EventManager.OnHit -= StoleSoul;
+		EventManager.OnStolenSoul -= StoleSoul;
 	}
 
 	void StopGameProcess() {
@@ -72,6 +72,7 @@ public class GameParameters : Singleton<GameParameters> {
 
 	public void DealDamage(int amount) {
 		Lives -= amount;
+		EventManager.PlayerHit();
 	}
 
 	public void AddFuel(float amount) {

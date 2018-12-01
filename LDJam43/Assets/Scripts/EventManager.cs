@@ -3,23 +3,36 @@ using UnityEngine;
 public class EventManager: MonoBehaviour {
 	public delegate void OnLoseAction();
 	public delegate void OnPlayerHitAction();
+	public delegate void OnStolenSoulAction();
+	public delegate void OnMonsterAwakeAction();
+	public delegate void OnMonsterSleepAction();
 
 	public static event OnLoseAction OnLose;
-	public static event OnPlayerHitAction OnHit;
-	public static event OnPlayerHitAction OnMonsterAwake;
-	public static event OnPlayerHitAction OnMonsterSleep;
+	public static event OnStolenSoulAction OnPlayerHit;
+	public static event OnStolenSoulAction OnStolenSoul;
+	public static event OnMonsterAwakeAction OnMonsterAwake;
+	public static event OnMonsterSleepAction OnMonsterSleep;
 
-	public static void HitPlayer() {
-		if (OnHit != null) {
-			OnHit();
+	public static void PlayerHit() {
+		if (OnPlayerHit != null) {
+			OnPlayerHit();
+		}
+	}
+	public static void StoleSoul() {
+		if (OnStolenSoul != null) {
+			OnStolenSoul();
 		}
 	}
 
 	public static void MonsterAwake() {
-		OnMonsterAwake();
+		if (OnMonsterSleep != null) {
+			OnMonsterAwake();
+		}
 	}
 	
 	public static void MonsterSleep() {
-		OnMonsterSleep();
+		if (OnMonsterSleep != null) {
+			OnMonsterSleep();
+		}
 	}
 }

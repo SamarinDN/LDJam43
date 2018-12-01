@@ -15,17 +15,12 @@ namespace Units {
 
 		private List<Vector3> _eatPoints;
 
-		private float _timer; // TODO
+		private float _timer;
 		private bool monsterAwake;
 		
 		private void Start() {
 			_eatPoints = new List<Vector3>{_eatPoint.transform.position, _sleepPoint.transform.position};
-		}
-
-		public void Spawn() {
-			MonsterAwake();
-			_timer = 10;
-			monsterAwake = true;
+			EventManager.OnMonsterAwake += MonsterAwake;
 		}
 
 		private void Update() {
@@ -45,7 +40,8 @@ namespace Units {
 
 		public void MonsterAwake() {
 			transform.DOMove(_startPoint.transform.position, _startDuration);
-			EventManager.MonsterAwake();
+			_timer = 10;
+			monsterAwake = true;
 		}
 
 		public void GoSleep() {

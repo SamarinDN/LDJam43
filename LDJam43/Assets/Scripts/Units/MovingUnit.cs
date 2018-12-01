@@ -52,7 +52,7 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 		if (other.gameObject.name != "Engine") {
 			return;
 		}
-		EventManager.HitPlayer();
+		EventManager.StoleSoul();
 		_image.sprite = _beforePlayerHit;
 	}
 }

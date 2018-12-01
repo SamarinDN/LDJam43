@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class GameEventManager : MonoBehaviour {
 
 	[SerializeField] private List<UnitsGeneratorSetting> _uintGenerators;
-	[SerializeField] private Monster _monster;
 
 	// TODO FuelGeneratorSetting;
 
@@ -78,7 +77,7 @@ public class GameEventManager : MonoBehaviour {
 			return;
 		}
 		_monsterTimer = _loopTime;
-		_monster.Spawn();
+		EventManager.MonsterAwake();
 		NextLoop();
 	}
 
