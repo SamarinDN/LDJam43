@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHitEffect : MonoBehaviour {
 	BoxCollider2D _collider2D;
 
+	[SerializeField] private SpriteRenderer _sprite;
 		Coroutine coroutine;
 	void Awake() {
 		_collider2D = GetComponent<BoxCollider2D>();
@@ -12,6 +13,7 @@ public class PlayerHitEffect : MonoBehaviour {
 
 	void OnEnable() {
 		coroutine = StartCoroutine(CheckCollider());
+		_sprite.gameObject.SetActive(false);
 	}
 
 	void OnDisable() {
@@ -25,6 +27,7 @@ public class PlayerHitEffect : MonoBehaviour {
 				_collider2D.size, 0f) ) {
 				if ( !other.CompareTag("Player") ) continue;
 				EventManager.StoleSoul();
+				_sprite.gameObject.SetActive(true);
 				//	_image.sprite = _beforePlayerHit;
 				yield break;
 			}
