@@ -21,7 +21,6 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
-		FuelManager.Instance.SpawnFeed(transform.position);
 		transform.DOComplete();
 	}
 

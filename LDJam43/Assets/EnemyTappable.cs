@@ -12,6 +12,7 @@ public class EnemyTappable : MonoBehaviour,IPointerClickHandler {
 
 	protected virtual void OnClickAction() {
 		
+		
 	}
 	
 }
