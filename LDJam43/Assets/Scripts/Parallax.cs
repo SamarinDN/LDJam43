@@ -19,12 +19,12 @@ public class Parallax : MonoBehaviour {
 		get {
 			switch ( ParallaxType ) {
 				case ParallaxType.Ice:
-					return GameParameters.Instance.DataToInitialize.IceSpeedMultiplier;
+					return GameParameters.Instance.IceSpeed;
 				case ParallaxType.Back:
-					return GameParameters.Instance.DataToInitialize.BackSpeedMultiplier;
+					return GameParameters.Instance.BackSpeed;
 				case ParallaxType.Water:
 
-					return GameParameters.Instance.DataToInitialize.WaterSpeedMultiplier;
+					return GameParameters.Instance.WaterSpeed;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
