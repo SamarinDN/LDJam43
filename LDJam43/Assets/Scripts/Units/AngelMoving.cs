@@ -5,6 +5,7 @@ using Units;
 using UnityEngine;
 
 public class AngelMoving : EnemyMoving {
+	public Transform InitPos;
 	readonly List<Vector3> _points = new List<Vector3>();
 	[SerializeField] private PathGenerator _pathGenerator;
 	private float _duration;
@@ -12,6 +13,7 @@ public class AngelMoving : EnemyMoving {
 	public override void Init() {
 		base.Init();
 		gameObject.SetActive(true);
+		transform.position = InitPos.position;
 		AddPath(_pathGenerator.GetPath());
 		SetSpeed(10);
 		transform.DOPath(_points.ToArray(), _duration, PathType.CatmullRom).onComplete = () => {
