@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,14 +10,13 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	private List<Vector3> _points;
 
 	private SpriteRenderer _image;
+	private BoxCollider2D _collider;
 	[SerializeField] private Sprite _afterPlayerHit;
 	[SerializeField] private Sprite _beforePlayerHit;
 
-	[SerializeField] public bool IsMove;// { get; private set; }
-
 	protected void Start() {
-		IsMove = false;
 		_image = GetComponent<SpriteRenderer>();
+		_collider = GetComponent<BoxCollider2D>();
 		_image.sprite = _afterPlayerHit;
 		Init();
 	}
@@ -24,7 +24,14 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick(PointerEventData eventData) {
 		FuelManager.Instance.SpawnFeed(transform.position);
 		transform.DOComplete();
-		IsMove = false;
+	}
+
+	private void OnEnable() {
+		StartCoroutine(CheckCollide());
+	}
+
+	private void OnDisable() {
+		StopAllCoroutines();
 	}
 
 	public void ClearPoint() {
@@ -38,21 +45,31 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 	protected void Init() {
 		DOTween.Init();
 		_points = new List<Vector3>();
+		gameObject.SetActive(false);
 	}
 
 	public void Run(float duration) {
+		gameObject.SetActive(true);
 		_image.sprite = _afterPlayerHit;
-		IsMove = true;
 		transform.DOPath(_points.ToArray(), duration, PathType.CatmullRom).onComplete = () => {
-			IsMove = false;
+			gameObject.SetActive(false);
 		};
 	}
-
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.name != "Engine") {
-			return;
+	
+	private IEnumerator CheckCollide()
+	{
+		yield return new WaitForSeconds(0.2f);
+		foreach (var other in Physics2D.OverlapBoxAll((Vector2) transform.position +  _collider.offset,
+			_collider.size, 0f))
+		{
+			if (other.CompareTag("Player")) {
+				EventManager.StoleSoul();
+				_image.sprite = _beforePlayerHit;
+				StopAllCoroutines();
+				yield break;
+			}
 		}
-		EventManager.StoleSoul();
-		_image.sprite = _beforePlayerHit;
+
+		StartCoroutine(CheckCollide());
 	}
 }

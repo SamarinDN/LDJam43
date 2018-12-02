@@ -5,6 +5,7 @@ namespace Units {
 	public class UnitsGenerator : MonoBehaviour {
 
 		[SerializeField] private GameObject _unitsPool;
+		[SerializeField] private GameObject _unitsTemplate;
 		[SerializeField] private GameObject _pointFirst;
 		[SerializeField] private GameObject _pointSecond;
 		[SerializeField] private GameObject _pointTarget;
@@ -15,6 +16,7 @@ namespace Units {
 		private void Start() {
 			var units = _unitsPool.GetComponentsInChildren<MovingUnit>();
 			_units = new List<MovingUnit>(units);
+			// TOOD fixme
 		}
 
 		public void LaunchUnit(float duration) {
@@ -39,7 +41,8 @@ namespace Units {
 		}
 
 		private MovingUnit GetUnit() {
-			return _units.Find(u => u.IsMove == false);
+			return _units.Find(u => u.gameObject.activeInHierarchy == false);
+			// TODO fixme
 		}
 
 		private float GetScale() {

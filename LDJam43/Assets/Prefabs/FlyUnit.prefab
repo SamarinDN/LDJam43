@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212868691342845144}
   - component: {fileID: 114667595810178104}
   - component: {fileID: 61876299881139536}
-  - component: {fileID: 50154924250128156}
   m_Layer: 0
   m_Name: FlyUnit
   m_TagString: Untagged
@@ -43,26 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50154924250128156
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1069552787484320}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
 --- !u!61 &61876299881139536
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -101,7 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _afterPlayerHit: {fileID: 21300000, guid: 13ba9e7f5266a4cd6aa542c9b1b735fd, type: 3}
   _beforePlayerHit: {fileID: 21300000, guid: eede29c0dd64d4db2992f27a2ea4202f, type: 3}
-  IsMove: 0
 --- !u!212 &212868691342845144
 SpriteRenderer:
   m_ObjectHideFlags: 1

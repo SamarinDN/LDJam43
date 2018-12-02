@@ -2539,6 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitsPool: {fileID: 1533476629}
+  _unitsTemplate: {fileID: 0}
   _pointFirst: {fileID: 1815682365}
   _pointSecond: {fileID: 80313527}
   _pointTarget: {fileID: 1969476137}
@@ -2667,6 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitsPool: {fileID: 1051004153}
+  _unitsTemplate: {fileID: 0}
   _pointFirst: {fileID: 781497991}
   _pointSecond: {fileID: 1466743720}
   _pointTarget: {fileID: 1726843547}
@@ -3911,9 +3913,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1433998763}
   - component: {fileID: 1433998764}
+  - component: {fileID: 1433998765}
   m_Layer: 0
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3980,6 +3983,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1433998765
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433998762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.14, y: 1.83}
+    newSize: {x: 3.14, y: 1.83}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.14, y: 1.83}
+  m_EdgeRadius: 0
 --- !u!4 &1448610109 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4141164792534036, guid: 3a2bf51b5dac4453d81030dbff3d4534,
