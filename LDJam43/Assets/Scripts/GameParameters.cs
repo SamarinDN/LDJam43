@@ -14,6 +14,10 @@ public class GameParameters : Singleton<GameParameters> {
 	Coroutine  _gameCoroutine;
 	float      _fuelDecrement = 1;
 
+	public int GameScore {
+		get { return 1337; }
+	}
+
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
 		EventManager.OnStolenSoul += StoleSoul;

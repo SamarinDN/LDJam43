@@ -28,9 +28,9 @@ namespace UI {
 
 		public void Update() {
 			var fuelScale = Mathf.Clamp(GameParameters.Instance.FuelInStorage / _maxFuelInStorage, 0, 1);
-			_fuelBar.rectTransform.sizeDelta = new Vector2(_fuelBarSize.x, _fuelBarSize.y * fuelScale);
+			_fuelBar.rectTransform.sizeDelta = new Vector2(_fuelBarSize.x * fuelScale, _fuelBarSize.y);
 			var usageFuelScale = Mathf.Clamp(GameParameters.Instance.FuelInUsage / _maxFuelInUsage, 0, 1);
-			_usageFuelBar.rectTransform.sizeDelta = new Vector2(_usageFuelBarSize.x, _usageFuelBarSize.y * usageFuelScale);
+			_usageFuelBar.rectTransform.sizeDelta = new Vector2(_usageFuelBarSize.x * usageFuelScale, _usageFuelBarSize.y);
 		}
 
 		public void EnableMonsterMarker() {
