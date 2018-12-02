@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameParameters : Singleton<GameParameters> {
 	public InitData DataToInitialize;
@@ -14,14 +15,13 @@ public class GameParameters : Singleton<GameParameters> {
 	Coroutine    _gameCoroutine;
 	float        _fuelDecrement = 1;
 
-	public int GameScore {
-		get { return 1337; }
-	}
+	public float GameScore { get; private set; }
 
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
 		EventManager.OnStolenSoul += StoleSoul;
 		EventManager.OnPlayerHit += EatPlayer;
+		EventManager.OnGameRestart += Restart;
 	}
 
 	void OnDisable() {
@@ -51,6 +51,7 @@ public class GameParameters : Singleton<GameParameters> {
 		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
 		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
 		_fuelDecrement = DataToInitialize.FuelDecrement;
+		GameScore = 0;
 	}
 
 	public float Speed {
@@ -78,6 +79,7 @@ public class GameParameters : Singleton<GameParameters> {
 
 	void TickAction() {
 		FuelInUsage -= _fuelDecrement;
+		GameScore += _fuelDecrement;
 	}
 
 	public void EatPlayer() {
@@ -108,5 +110,6 @@ public class GameParameters : Singleton<GameParameters> {
 	}
 
 	public void Restart() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

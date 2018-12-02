@@ -56,4 +56,8 @@ public class EnemyGenerator : MonoBehaviour {
 	public void test() {
 		EventManager.SpawnEnemy();
 	}
+	
+	public void test2() {
+		EventManager.MonsterAwake();
+	}
 }

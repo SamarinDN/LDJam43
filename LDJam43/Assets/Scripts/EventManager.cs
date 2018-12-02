@@ -47,7 +47,6 @@ public class EventManager : MonoBehaviour {
 
 	public static void StoleSoul() {
 		if ( OnStolenSoul != null ) {
-			Debug.Log("!");
 			OnStolenSoul();
 		}
 	}
