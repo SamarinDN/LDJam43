@@ -51,6 +51,7 @@ namespace Units {
 
 		public void EatPlayer() {
 			transform.DOPath(_eatPoints.ToArray(), _eatDuration, PathType.CatmullRom);
+			EventManager.PlayerHit();
 		}
 	}
 }

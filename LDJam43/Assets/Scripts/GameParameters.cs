@@ -17,11 +17,13 @@ public class GameParameters : Singleton<GameParameters> {
 	void OnEnable() {
 		EventManager.OnLose += StopGameProcess;
 		EventManager.OnStolenSoul += StoleSoul;
+		EventManager.OnPlayerHit += EatPlayer;
 	}
 
 	void OnDisable() {
 		EventManager.OnLose -= StopGameProcess;
 		EventManager.OnStolenSoul -= StoleSoul;
+		EventManager.OnPlayerHit -= EatPlayer;
 	}
 
 	void StopGameProcess() {
@@ -70,9 +72,15 @@ public class GameParameters : Singleton<GameParameters> {
 		FuelInUsage -= _fuelDecrement;
 	}
 
+	public void EatPlayer() {
+		DealDamage(5);
+	}
+
 	public void DealDamage(int amount) {
 		Lives -= amount;
-		EventManager.PlayerHit();
+		if (Lives <= 0) {
+			EventManager.Lose();
+		}
 	}
 
 	public void AddFuel(float amount) {
@@ -83,5 +91,8 @@ public class GameParameters : Singleton<GameParameters> {
 		amount = amount < FuelInStorage ? amount : FuelInStorage;
 		FuelInStorage -= amount;
 		FuelInUsage = Mathf.Min(amount + FuelInUsage, MaxFuelInUsage);
+	}
+
+	public void Restart() {
 	}
 }

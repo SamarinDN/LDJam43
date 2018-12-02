@@ -8,10 +8,16 @@ public class EventManager: MonoBehaviour {
 	public delegate void OnMonsterSleepAction();
 
 	public static event OnLoseAction OnLose;
-	public static event OnStolenSoulAction OnPlayerHit;
+	public static event OnPlayerHitAction OnPlayerHit;
 	public static event OnStolenSoulAction OnStolenSoul;
 	public static event OnMonsterAwakeAction OnMonsterAwake;
 	public static event OnMonsterSleepAction OnMonsterSleep;
+
+	public static void Lose() {
+		if (OnLose != null) {
+			OnLose();
+		}
+	}
 
 	public static void PlayerHit() {
 		if (OnPlayerHit != null) {
