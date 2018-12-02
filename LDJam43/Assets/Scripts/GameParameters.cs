@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameParameters : Singleton<GameParameters> {
-	public InitData DataToInitialize;
+	//public InitData DataToInitialize;
 	public float    FuelInUsage;
 
 	public float FuelInStorage;
@@ -14,6 +14,11 @@ public class GameParameters : Singleton<GameParameters> {
 	float        _timePerTick;
 	Coroutine    _gameCoroutine;
 	float        _fuelDecrement = 1;
+	public float DropItemReward;
+	public float FeedingCost;
+	public float WaterSpeed;
+	public float IceSpeed;
+	public float BackSpeed;
 
 	public float GameScore { get; private set; }
 
@@ -43,15 +48,20 @@ public class GameParameters : Singleton<GameParameters> {
 	}
 
 	public void InitGameParameters() {
-		FuelInUsage = DataToInitialize.FuelInUsage;
-		FuelInStorage = DataToInitialize.FuelInStorage;
-		Lives = DataToInitialize.Lives;
-		_timePerTick = DataToInitialize.TimePerTick;
-		MinFuelToGetHit = DataToInitialize.MinFuelToGetHit;
-		MaxFuelInUsage = DataToInitialize.MaxFuelInUsage;
-		MaxFuelInStorage = DataToInitialize.MaxFuelInStorage;
-		_fuelDecrement = DataToInitialize.FuelDecrement;
+		FuelInUsage = 75;
+		FuelInStorage = 300;
+		Lives = 5;
+		_timePerTick = 0.1f;
+		MinFuelToGetHit = 50;
+		MaxFuelInUsage = 100;
+		MaxFuelInStorage = 350;
+		_fuelDecrement = 0.3f;
 		GameScore = 0;
+		DropItemReward = 15;
+		FeedingCost=10;
+		WaterSpeed = 10;
+		IceSpeed = 16;
+		BackSpeed = 50;
 	}
 
 	public float Speed {

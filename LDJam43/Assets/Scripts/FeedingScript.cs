@@ -29,7 +29,7 @@ public class FeedingScript : MonoBehaviour, IPointerClickHandler {
 			return;
 		}
 
-		GameParameters.Instance.Feed(GameParameters.Instance.DataToInitialize.FeedingCost);
+		GameParameters.Instance.Feed(GameParameters.Instance.FeedingCost);
 	}
 
 	CatcherOnPlayer IsAnyCatchers() {
