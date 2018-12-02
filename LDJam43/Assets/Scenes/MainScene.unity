@@ -1758,11 +1758,11 @@ RectTransform:
   m_Father: {fileID: 208600921}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -500, y: 454.6}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 415, y: -40.399994}
   m_SizeDelta: {x: 90, y: 90}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &235521350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,7 +1825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &287341314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5924,12 +5924,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c321ac8e7a2040a88124f7140aa7131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataToInitialize: {fileID: 11400000, guid: be55747fa61884d869cca80a9a2ccb98, type: 2}
   FuelInUsage: 70
   FuelInStorage: 700
   MaxFuelInStorage: 700
   Lives: 5
   MinFuelToGetHit: 0
+  MaxFuelInUsage: 0
+  DropItemReward: 0
+  FeedingCost: 0
+  WaterSpeed: 0
+  IceSpeed: 0
+  BackSpeed: 0
 --- !u!4 &1301710166
 Transform:
   m_ObjectHideFlags: 0
@@ -7647,7 +7652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f25d18a81244ae68f72108065f9837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataToInitialize: {fileID: 11400000, guid: be55747fa61884d869cca80a9a2ccb98, type: 2}
   _fuelBar: {fileID: 1586635864}
   _usageFuelBar: {fileID: 1827314829}
   _monsterMarker: {fileID: 554751704}
@@ -8128,7 +8132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1917347047
 Transform:
   m_ObjectHideFlags: 0

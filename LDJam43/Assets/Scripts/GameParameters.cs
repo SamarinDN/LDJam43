@@ -10,7 +10,7 @@ public class GameParameters : Singleton<GameParameters> {
 	public float MaxFuelInStorage;
 	public int   Lives;
 	public float MinFuelToGetHit;
-	float        MaxFuelInUsage;
+	public float        MaxFuelInUsage;
 	float        _timePerTick;
 	Coroutine    _gameCoroutine;
 	float        _fuelDecrement = 1;
