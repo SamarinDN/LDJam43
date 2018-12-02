@@ -53,4 +53,10 @@ public class EventManager: MonoBehaviour {
 			OnMonsterSleep();
 		}
 	}
+	
+	public static void SpawnEnemy() {
+		if (InitEnemy != null) {
+			InitEnemy();
+		}
+	}
 }

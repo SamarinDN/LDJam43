@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour {
 	public GameObject[] EnemyPrefabs;
-	public Transform    YSpawnPos;
-
-	[SerializeField]
-	float _maxDistanceFromCenter = 5f;
 
 	public List<EnemyMoving> DisabledEnemies;
 
@@ -42,11 +38,14 @@ public class EnemyGenerator : MonoBehaviour {
 
 	GameObject InstantiateEnemyFromPrefab() {
 		var enemy = Instantiate(EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)],
-			new Vector3(Random.Range(-_maxDistanceFromCenter, _maxDistanceFromCenter), 0,
-				10),
+			transform.position,
 			Quaternion.identity, transform);
 		var manager = enemy.GetComponent<EnemyTappable>();
 		manager.EnemyGenerator = this;
 		return manager.gameObject;
+	}
+
+	public void test() {
+		EventManager.SpawnEnemy();
 	}
 }
