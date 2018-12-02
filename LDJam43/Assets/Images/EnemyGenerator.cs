@@ -42,7 +42,7 @@ public class EnemyGenerator : MonoBehaviour {
 
 	GameObject InstantiateEnemyFromPrefab() {
 		var enemy = Instantiate(EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)],
-			new Vector3(Random.Range(-_maxDistanceFromCenter, _maxDistanceFromCenter), YSpawnPos.position.y,
+			new Vector3(Random.Range(-_maxDistanceFromCenter, _maxDistanceFromCenter), 0,
 				10),
 			Quaternion.identity, transform);
 		var manager = enemy.GetComponent<EnemyTappable>();
