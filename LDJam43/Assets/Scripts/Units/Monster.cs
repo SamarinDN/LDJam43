@@ -13,9 +13,9 @@ namespace Units {
 		GameObject _eatPoint;
 
 		[SerializeField]
-		float _startDuration = 5;
+		float _startDuration = 1;
 		[SerializeField]
-		float _sleepDuration = 5;
+		float _sleepDuration = 1;
 		[SerializeField]
 		float _eatDuration = 5;
 
@@ -27,7 +27,6 @@ namespace Units {
 		void Start() {
 			_eatPoints = new List<Vector3>{_eatPoint.transform.position, _sleepPoint.transform.position};
 			EventManager.OnMonsterAwake += MonsterAwake;
-			DOTween.Init();
 		}
 
 		void Update() {
@@ -46,20 +45,23 @@ namespace Units {
 		}
 
 		public void MonsterAwake() {
+			Debug.Log("MonsterAwake");
 			transform.DOMove(_startPoint.transform.position, _startDuration);
 			_timer = 3;
 			monsterAwake = true;
 		}
 
 		public void GoSleep() {
+			Debug.Log("GoSleep");
 			transform.DOMove(_sleepPoint.transform.position, _sleepDuration);
 			EventManager.MonsterSleep();
 		}
 
 		public void EatPlayer() {
+			Debug.Log("EatPlayer");
 			transform.DOPath(_eatPoints.ToArray(), _eatDuration, PathType.CatmullRom);
 			EventManager.PlayerHit();
-			EventManager.MonsterSleep();
+		//	EventManager.MonsterSleep();
 		}
 	}
 }

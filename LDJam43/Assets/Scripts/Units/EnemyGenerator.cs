@@ -35,7 +35,7 @@ public class EnemyGenerator : MonoBehaviour {
 
 	IEnumerator spawnHand() {
 		while ( true ) {
-			yield return new WaitForSeconds(15f);
+			yield return new WaitForSeconds(20f);
 			EventManager.MonsterAwake();
 		}
 	}
