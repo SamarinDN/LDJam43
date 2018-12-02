@@ -15,6 +15,8 @@ public class FeedingScript : MonoBehaviour, IPointerClickHandler {
 			if ( !catcherOnPlayer.gameObject.activeInHierarchy ) {
 				
 				catcherOnPlayer.gameObject.SetActive(true);
+				GameParameters.Instance.Feed(catcherOnPlayer.reduceAmount*0.75f);
+
 				return;
 			}
 		}
