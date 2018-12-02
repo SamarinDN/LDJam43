@@ -16,7 +16,7 @@ public class GameOverWindow : MonoBehaviour {
 	private void ShowWindow() {
 		gameObject.SetActive(true);
 		_messageField.text = "Game over\n" +
-			"You score : " + GameParameters.Instance.GameScore;
+			"You score : " + (int)(GameParameters.Instance.GameScore);
 	}
 
 	private void Restart() {

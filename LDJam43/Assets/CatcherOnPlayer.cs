@@ -5,14 +5,13 @@ using UnityEngine;
 public class CatcherOnPlayer : MonoBehaviour {
 
 int 	Health=5;
-	float reduceAmount;
+	public float reduceAmount;
 	void OnEnable() {
 		Health = 5;
 		ReduceFuel(25f);
 	}
 
 	void OnDisable() {
-		GameParameters.Instance.Feed(reduceAmount*0.75f);
 	}
 
 	public void ReduceFuel(float amount) {

@@ -27,6 +27,7 @@ namespace Units {
 		void Start() {
 			_eatPoints = new List<Vector3>{_eatPoint.transform.position, _sleepPoint.transform.position};
 			EventManager.OnMonsterAwake += MonsterAwake;
+			DOTween.Init();
 		}
 
 		void Update() {
@@ -46,7 +47,7 @@ namespace Units {
 
 		public void MonsterAwake() {
 			transform.DOMove(_startPoint.transform.position, _startDuration);
-			_timer = 10;
+			_timer = 3;
 			monsterAwake = true;
 		}
 

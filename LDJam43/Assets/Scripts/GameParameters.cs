@@ -87,10 +87,10 @@ public class GameParameters : Singleton<GameParameters> {
 	}
 
 	public void DealDamage(int amount) {
-		Lives -= amount;
-		if ( Lives <= 0 ) {
+		//Lives -= amount;
+		//if ( Lives <= 0 ) {
 			EventManager.Lose();
-		}
+		//}
 	}
 
 	public void AddFuel(float amount) {

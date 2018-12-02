@@ -23,12 +23,20 @@ public class EnemyGenerator : MonoBehaviour {
 	void OnEnable() {
 		EventManager.InitEnemy += InitEnemy;
 		StartCoroutine(asdasd());
+		StartCoroutine(spawnHand());
 	}
 
 	IEnumerator asdasd() {
 		while ( true ) {
 			yield return new WaitForSeconds(3f);
 			EventManager.SpawnEnemy();
+		}
+	}
+
+	IEnumerator spawnHand() {
+		while ( true ) {
+			yield return new WaitForSeconds(15f);
+			EventManager.MonsterAwake();
 		}
 	}
 
