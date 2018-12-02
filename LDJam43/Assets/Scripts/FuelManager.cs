@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class FuelManager : Singleton<FuelManager> {
 
-	[SerializeField] private GameObject _fuelsPool;
+	[SerializeField]
+	GameObject _fuelsPool;
 
-	private List<Fuel> _fuels;
+	List<Fuel> _fuels;
 
-	private void Start() {
+	void Start() {
 		var fuels = _fuelsPool.GetComponentsInChildren<Fuel>();
 		_fuels = new List<Fuel>(fuels);
 	}

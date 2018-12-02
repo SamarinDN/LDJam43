@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class MovingUnit : MonoBehaviour, IPointerClickHandler {
-
-	private List<Vector3> _points;
-
-	private SpriteRenderer _image;
-	private BoxCollider2D _collider;
-	[SerializeField] private Sprite _afterPlayerHit;
-	[SerializeField] private Sprite _beforePlayerHit;
+	List<Vector3> _points;
+	SpriteRenderer _image;
+	BoxCollider2D  _collider;
+	[SerializeField]
+	Sprite _afterPlayerHit;
+	[SerializeField]
+	Sprite _beforePlayerHit;
 
 	protected void Start() {
 		_image = GetComponent<SpriteRenderer>();
@@ -26,13 +25,10 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 		transform.DOComplete();
 	}
 
-	private void OnEnable() {
+	void OnEnable() {
 		StartCoroutine(CheckCollide());
 	}
 
-	private void OnDisable() {
-		StopAllCoroutines();
-	}
 
 	public void ClearPoint() {
 		_points.Clear();
@@ -55,19 +51,15 @@ public class MovingUnit : MonoBehaviour, IPointerClickHandler {
 			gameObject.SetActive(false);
 		};
 	}
-	
-	private IEnumerator CheckCollide()
-	{
+
+	IEnumerator CheckCollide() {
 		yield return new WaitForSeconds(0.2f);
-		foreach (var other in Physics2D.OverlapBoxAll((Vector2) transform.position +  _collider.offset,
-			_collider.size, 0f))
-		{
-			if (other.CompareTag("Player")) {
-				EventManager.StoleSoul();
-				_image.sprite = _beforePlayerHit;
-				StopAllCoroutines();
-				yield break;
-			}
+		foreach ( var other in Physics2D.OverlapBoxAll((Vector2) transform.position + _collider.offset,
+			_collider.size, 0f) ) {
+			if ( !other.CompareTag("Player") ) continue;
+			EventManager.StoleSoul();
+			_image.sprite = _beforePlayerHit;
+			yield break;
 		}
 
 		StartCoroutine(CheckCollide());

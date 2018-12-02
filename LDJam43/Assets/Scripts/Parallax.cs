@@ -8,7 +8,7 @@ public enum ParallaxType {
 }
 
 public class Parallax : MonoBehaviour {
-	private float        _pos  = 0;
+	float        _pos  = 0;
 	public  float        Delta = 0;
 	public  ParallaxType ParallaxType;
 

@@ -30,6 +30,13 @@ public class DropItem : ResetableRigitbody2D, IPointerClickHandler {
 		StartCoroutine(UpdateVelocity());
 	}
 
+	void Reset() {
+		base.Reset();
+		_rigidbody2D.AddForce(Vector2.left * (GameParameters.Instance.Speed *
+		                                      GameParameters.Instance.DataToInitialize.DropItemSpeedMultiplier));
+		
+	}
+
 	public void OnPointerClick(PointerEventData eventData) {
 		GameParameters.Instance.AddFuel(_initData.DropItemReward);
 

@@ -8,13 +8,15 @@ using Random = UnityEngine.Random;
 
 public class GameEventManager : MonoBehaviour {
 
-	[SerializeField] private List<UnitsGeneratorSetting> _uintGenerators;
+	[SerializeField]
+	List<UnitsGeneratorSetting> _uintGenerators;
 
 	// TODO FuelGeneratorSetting;
 
-	[SerializeField] private float _loopTime;
-	
-	private float _monsterTimer = 0;
+	[SerializeField]
+	float _loopTime;
+
+	float _monsterTimer = 0;
 
 	public enum Stages {
 		Tutorial_Life,
@@ -26,15 +28,15 @@ public class GameEventManager : MonoBehaviour {
 		Loop,
 	}
 
-	private Stages _stage = Stages.Loop;// Stages.Tutorial_Life;
+	Stages _stage = Stages.Loop;// Stages.Tutorial_Life;
 
-	private void Start() {
+	void Start() {
 		foreach (var g in _uintGenerators) {
 			g.Init();
 		}
 	}
 
-	private void Update() {
+	void Update() {
 		if (_stage == Stages.Loop) {
 			foreach (var g in _uintGenerators) {
 				g.TrySpawnUnit();
@@ -71,7 +73,7 @@ public class GameEventManager : MonoBehaviour {
 		// TODO
 	}
 
-	private void TrySpawnMonster() {
+	void TrySpawnMonster() {
 		_monsterTimer -= Time.deltaTime;
 		if (!(_monsterTimer <= 0.0f)) {
 			return;
@@ -81,7 +83,7 @@ public class GameEventManager : MonoBehaviour {
 		NextLoop();
 	}
 
-	private void NextLoop() {
+	void NextLoop() {
 		foreach (var g in _uintGenerators) {
 			g.ChangeSpawnRate();
 			g.ChangeSpeed();
@@ -90,18 +92,20 @@ public class GameEventManager : MonoBehaviour {
 
 	[Serializable]
 	class UnitsGeneratorSetting {
-		[SerializeField] private UnitsGenerator _unitGenerator;
-		[SerializeField] private UnitsGeneratorSettingData _settingData;
-		
-		private float _spawnRate;
-		private float _spawnDelta;
-		private float _spawnScale;
-		
-		private float _speed;
-		private float _speedDelta;
-		private float _speedScale;
-		
-		private float _timer = 0;
+		[SerializeField]
+		UnitsGenerator _unitGenerator;
+		[SerializeField]
+		UnitsGeneratorSettingData _settingData;
+
+		float _spawnRate;
+		float _spawnDelta;
+		float _spawnScale;
+
+		float _speed;
+		float _speedDelta;
+		float _speedScale;
+
+		float _timer = 0;
 
 		public void Init() {
 			_spawnRate = _settingData.SpawnRate;

@@ -4,16 +4,22 @@ using UnityEngine;
 namespace Units {
 	public class UnitsGenerator : MonoBehaviour {
 
-		[SerializeField] private GameObject _unitsPool;
-		[SerializeField] private GameObject _unitsTemplate;
-		[SerializeField] private GameObject _pointFirst;
-		[SerializeField] private GameObject _pointSecond;
-		[SerializeField] private GameObject _pointTarget;
-		[SerializeField] private GameObject _pointEnd;
-	
-		private List<MovingUnit> _units;
+		[SerializeField]
+		GameObject _unitsPool;
+		[SerializeField]
+		GameObject _unitsTemplate;
+		[SerializeField]
+		GameObject _pointFirst;
+		[SerializeField]
+		GameObject _pointSecond;
+		[SerializeField]
+		GameObject _pointTarget;
+		[SerializeField]
+		GameObject _pointEnd;
 
-		private void Start() {
+		List<MovingUnit> _units;
+
+		void Start() {
 			var units = _unitsPool.GetComponentsInChildren<MovingUnit>();
 			_units = new List<MovingUnit>(units);
 			// TOOD fixme
@@ -40,12 +46,12 @@ namespace Units {
 			unit.Run(duration);
 		}
 
-		private MovingUnit GetUnit() {
+		MovingUnit GetUnit() {
 			return _units.Find(u => u.gameObject.activeInHierarchy == false);
 			// TODO fixme
 		}
 
-		private float GetScale() {
+		float GetScale() {
 			return Random.Range(0.5f, 1.0f);
 		}
 	}

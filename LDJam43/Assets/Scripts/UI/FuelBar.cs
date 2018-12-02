@@ -6,16 +6,19 @@ namespace UI {
 	public class FuelBar : MonoBehaviour {
 
 		public InitData DataToInitialize;
-		[SerializeField] private Image _fuelBar;
-		[SerializeField] private Image _usageFuelBar;
+		[SerializeField]
+		Image _fuelBar;
+		[SerializeField]
+		Image _usageFuelBar;
 		
-		[SerializeField] private Image _monsterMarker;
+		[SerializeField]
+		Image _monsterMarker;
 
-		private Vector2 _fuelBarSize;
-		private Vector2 _usageFuelBarSize;
+		Vector2 _fuelBarSize;
+		Vector2 _usageFuelBarSize;
 
-		private float _maxFuelInStorage;
-		private float _maxFuelInUsage;
+		float _maxFuelInStorage;
+		float _maxFuelInUsage;
 		
 		public void Start() {
 			_fuelBarSize = _fuelBar.rectTransform.sizeDelta;
