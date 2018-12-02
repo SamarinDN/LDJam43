@@ -28,7 +28,7 @@ public class EnemyGenerator : MonoBehaviour {
 	IEnumerator asdasd() {
 		while ( true ) {
 			yield return new WaitForSeconds(3f);
-			EventManager.InitEnemyStatic();
+			EventManager.SpawnEnemy();
 		}
 	}
 
