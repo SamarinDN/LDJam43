@@ -3,6 +3,7 @@ using UnityEngine;
 public class EventManager: MonoBehaviour {
 	public delegate void OnLoseAction();
 	public delegate void OnGameRestartAction();
+	public delegate void InitEnemyAction();
 	public delegate void OnPlayerHitAction();
 	public delegate void OnStolenSoulAction();
 	public delegate void OnMonsterAwakeAction();
@@ -10,6 +11,7 @@ public class EventManager: MonoBehaviour {
 
 	public static event OnLoseAction OnLose;
 	public static event OnGameRestartAction OnGameRestart;
+	public static event InitEnemyAction InitEnemy;
 	public static event OnPlayerHitAction OnPlayerHit;
 	public static event OnStolenSoulAction OnStolenSoul;
 	public static event OnMonsterAwakeAction OnMonsterAwake;
@@ -32,13 +34,14 @@ public class EventManager: MonoBehaviour {
 			OnPlayerHit();
 		}
 	}
+	
 	public static void StoleSoul() {
 		if (OnStolenSoul != null) {
 			Debug.Log("!");
 			OnStolenSoul();
 		}
 	}
-
+	
 	public static void MonsterAwake() {
 		if (OnMonsterAwake != null) {
 			OnMonsterAwake();
