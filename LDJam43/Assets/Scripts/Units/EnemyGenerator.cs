@@ -22,6 +22,14 @@ public class EnemyGenerator : MonoBehaviour {
 
 	void OnEnable() {
 		EventManager.InitEnemy += InitEnemy;
+		StartCoroutine(asdasd());
+	}
+
+	IEnumerator asdasd() {
+		while ( true ) {
+			yield return new WaitForSeconds(3f);
+			EventManager.InitEnemyStatic();
+		}
 	}
 
 	void InitEnemy() {

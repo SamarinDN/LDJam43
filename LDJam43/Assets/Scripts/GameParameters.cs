@@ -4,15 +4,15 @@ using UnityEngine;
 public class GameParameters : Singleton<GameParameters> {
 	public InitData DataToInitialize;
 	public float    FuelInUsage;
-	
-	public float    FuelInStorage;
-	public float    MaxFuelInStorage;
-	public int Lives;
-	public float    MinFuelToGetHit;
-	float           MaxFuelInUsage;
-	float      _timePerTick;
-	Coroutine  _gameCoroutine;
-	float      _fuelDecrement = 1;
+
+	public float FuelInStorage;
+	public float MaxFuelInStorage;
+	public int   Lives;
+	public float MinFuelToGetHit;
+	float        MaxFuelInUsage;
+	float        _timePerTick;
+	Coroutine    _gameCoroutine;
+	float        _fuelDecrement = 1;
 
 	public int GameScore {
 		get { return 1337; }
@@ -34,8 +34,12 @@ public class GameParameters : Singleton<GameParameters> {
 		StopCoroutine(_gameCoroutine);
 	}
 
-	void StoleSoul() {
+	public void StoleSoul() {
 		FuelInStorage -= 10;
+	}
+
+	public void StoleSoul(float amount) {
+		FuelInStorage -= amount;
 	}
 
 	public void InitGameParameters() {
@@ -82,13 +86,19 @@ public class GameParameters : Singleton<GameParameters> {
 
 	public void DealDamage(int amount) {
 		Lives -= amount;
-		if (Lives <= 0) {
+		if ( Lives <= 0 ) {
 			EventManager.Lose();
 		}
 	}
 
 	public void AddFuel(float amount) {
 		FuelInStorage = Mathf.Min(FuelInStorage + amount, MaxFuelInStorage);
+	}
+
+	public float ReduceFuelInUsage(float amount) {
+		var minDist = Mathf.Abs(FuelInUsage - Mathf.Max(FuelInUsage - amount, 0));
+		FuelInUsage = Mathf.Max(FuelInUsage - amount, 0);
+		return minDist;
 	}
 
 	public void Feed(float amount) {

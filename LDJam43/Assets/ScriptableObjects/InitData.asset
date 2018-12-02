@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5c66a886a647cfa58f78a5a5ee5417, type: 3}
   m_Name: InitData
   m_EditorClassIdentifier: 
-  FuelInUsage: 25
+  FuelInUsage: 100
   MinFuelToGetHit: 50
   MaxFuelInUsage: 100
   FuelInStorage: 300
   MaxFuelInStorage: 350
   Lives: 5
-  TimePerTick: 1
-  FuelDecrement: 1
+  TimePerTick: 0.1
+  FuelDecrement: 0.3
   FeedingCost: 10
   BackSpeedMultiplier: 50
   IceSpeedMultiplier: 16

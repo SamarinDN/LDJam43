@@ -30,6 +30,7 @@ public class Parallax : MonoBehaviour {
 
 	void FixedUpdate() {
 		_pos += GameParameters.Instance.Speed /(Multiplier*100);
+		
 		if ( _pos > Delta ) {
 			_pos -= Delta;
 		}
